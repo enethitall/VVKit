@@ -1,7 +1,8 @@
 use_frameworks!
 
 target 'JSTest_Example' do
-  pod 'JSTest', :path => '../'
+#  pod 'JSTest', :path => '../'
+pod 'JSTest',:podspec => '../JSTest.podspec'
 
   target 'JSTest_Tests' do
     inherit! :search_paths
