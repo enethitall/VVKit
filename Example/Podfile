@@ -1,8 +1,9 @@
 use_frameworks!
-
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/enethitall/enethitallSpecs.git'
 target 'JSTest_Example' do
-#  pod 'JSTest', :path => '../'
-pod 'JSTest',:podspec => '../JSTest.podspec'
+  pod 'JSTest', :path => '../'
+#pod 'JSTest',:podspec => '../JSTest.podspec'
 
   target 'JSTest_Tests' do
     inherit! :search_paths
