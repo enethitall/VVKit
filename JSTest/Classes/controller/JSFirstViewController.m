@@ -7,6 +7,11 @@
 
 #import "JSFirstViewController.h"
 #import "JSNextViewController.h"
+//获取对应Class的Bundle路径
+#define JSBundleForClass(Class) [NSBundle bundleForClass:Class]
+//获取对应Bundle的Xib对象，Class为对应Bundle的-Class
+#define InitXibClass(Class) [[Class alloc] initWithNibName:NSStringFromClass(Class) bundle:JSBundleForClass(Class)]
+#define JSImageName(imageName) [UIImage imageNamed:imageName inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil]
 @interface JSFirstViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -20,16 +25,16 @@
     self.navigationItem.title = @"测试";
     
 
-    [self.headerImageView setImage:[UIImage imageNamed:@"btn_login_weixin" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil]];
+    [self.headerImageView setImage:JSImageName(@"boy.jpg")];
     // Do any additional setup after loading the view from its nib.
     
     UIImageView * exampleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 300, 100, 100)];
-    exampleImageView.image = [UIImage imageNamed:@"btn_login_qq" inBundle:[NSBundle bundleWithIdentifier:@"org.cocoapods.JSTest"] compatibleWithTraitCollection:nil];
+    exampleImageView.image = JSImageName(@"btn_login_weixin");
     exampleImageView.backgroundColor = [UIColor redColor];
     [self.view addSubview:exampleImageView];
 }
 - (IBAction)push:(id)sender {
-    JSNextViewController * next = [[JSNextViewController alloc]initWithNibName:NSStringFromClass(JSNextViewController.class) bundle:[NSBundle bundleWithIdentifier:@"org.cocoapods.JSTest"]];
+    JSNextViewController * next = InitXibClass([JSNextViewController class]);
     [self.navigationController pushViewController:next animated:YES];
 }
 
